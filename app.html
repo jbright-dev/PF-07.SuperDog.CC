@@ -65,11 +65,34 @@
                 <div class="col-12 col-md-6">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown button
+                          Pick a Location
                         </button>
                         <ul class="dropdown-menu" id="eventDropDown">
                           <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
                         </ul>
+                    </div>
+                    <div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th colspan="2" id="statsHeader">Stats For All Events</th><!--Changed Dynamically w/ JS-->
+                            </tr>
+                            <tr>
+                                <td>Total Attendance</td>
+                                <td id="total">100</td>
+                            </tr>
+                            <tr>
+                                <td>Average Attendance</td>
+                                <td id="average">100</td>
+                            </tr>
+                            <tr>
+                                <td>Most Attended</td>
+                                <td id="most">100</td>
+                            </tr>
+                            <tr>
+                                <td>Least Attended</td>
+                                <td id="least">100</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-first order-md-last">
@@ -117,17 +140,6 @@
     <!-- This creates HTML behind the scenes so it can inject the dyname user input content into it at runtime -->
     <template id="cityDD-template">
         <li><a class="dropdown-item" href ="#"></a></li>
-    </template>
-
-    <template id="displayMonthCalc">
-        <tr>
-            <td data-id="displayMonth"></td>
-            <td data-id="displayPayment"></td>
-            <td data-id="displayPrincipal"></td>
-            <td data-id="displayInterest"></td>
-            <td data-id="displayTotalInterest"></td>
-            <td data-id="displayBalance"></td>
-        </tr>
     </template>
 
     <!---------------Scripts---------------->
