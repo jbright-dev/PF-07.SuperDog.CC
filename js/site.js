@@ -103,7 +103,7 @@ function buildDD(){
   //---Consolidate the "event" list to it's distinct cities--//
 
 
-  /*Create a varaible named "distinctCities" which will be defined as a new array consisting of: a new set of the unique values of currentEvent which will be mapped to "event" property of the "events" object; and loop over that data to only return the city */
+  /*Create a varaible named "distinctCities" which will be defined as a new array consisting of: a new set of the unique values of currentEvents which will be mapped to "event" property of the "events" object; and loop over that data to only return the city */
   let distinctCitites = [...new Set(currentEvents.map((event) => event.city))];
 
   /*Create a for loop where a variable of "index will have a value of zero; As long as teh value of "index is less than the lengh of the distinctCities array, add one to the the value of the index */
@@ -129,8 +129,13 @@ function buildDD(){
 
   }
 
+  
   /*Call the function named "displayStats" with the pass-through variable "currentEvents", which is an array of objects  */
   displayStats(currentEvents);
+
+  
+  displayData(currentEvents);
+
 
 }
 
@@ -198,6 +203,30 @@ function getEvents(element){
 
   /*Within the scope of the function, initialize a varaible which will be defined as the element with the data attribute of "data-string"; this will filter the array by the city name*/
   let city = element.getAttribute("data-string");
+
+  let currentEvents = getEventData();
+
+  //if the city is 'All'
+  if (city != "All") {
+    
+    
+    currentEvents = currentEvents.filter(function (event){
+      
+      
+      if(event.city == city){
+      
+      
+        return event;
+      
+      
+      }
+    });
+  }
+
+  displayStats(currentEvents);
+  displayData(currentEvents);
+
+  //filter the array by city name
 }
 
 //now we will store events into local storage
@@ -210,6 +239,7 @@ function getEventData(){
 
   /*Create an if statement where if current events has a value of null*/
   if(currentEvents == null){
+
     /*Within the scope of the statement, the variable currentEvents will have the value of the object "events"*/
     currentEvents = events;
 
@@ -219,4 +249,45 @@ function getEventData(){
   
   return currentEvents;
   
+}
+
+
+function displayData(currentEvents){
+  
+  let eventTemplate = document.getElementById("eventData-template");
+  
+  let eventBody = document.getElementById("eventBody");
+
+  eventBody.innerHTML = "";
+
+  //Same process as line 87
+  for (let index = 0; index < currentEvents.length; index++) {
+    
+    let eventNode = document.importNode(eventTemplate.content,true);
+
+    let eventItems = eventNode.querySelectorAll("td");
+
+    
+    
+    eventItems[0].textContent = currentEvents[index].event;
+
+    eventItems[1].textContent = currentEvents[index].city;
+    
+    eventItems[2].textContent = currentEvents[index].state;
+    
+    eventItems[3].textContent = currentEvents[index].attendance.toLocaleString();
+    
+    eventItems[4].textContent = new Date(currentEvents[index].date).toLocaleDateString();
+
+
+    
+    eventBody.appendChild(eventNode);
+        
+  }
+
+}
+
+//saves event data from the modal form
+function saveEventData(){
+
 }
