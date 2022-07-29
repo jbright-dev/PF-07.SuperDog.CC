@@ -92,7 +92,7 @@
                                 <td>Least Attended</td>
                                 <td id="least">100</td>
                             </tr>
-                        </table>
+                        </table>                            
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-first order-md-last">
@@ -139,7 +139,7 @@
     <!--The template tag will not render on the browser, but are validated in the IDE-->
     <!-- This creates HTML behind the scenes so it can inject the dyname user input content into it at runtime -->
     <template id="cityDD-template">
-        <li><a class="dropdown-item" href ="#"></a></li>
+        <li><a class="dropdown-item" onclick="getEvents(this)" data-attribute="eventData"></a></li><!--the keyword "this" creates an html fragment-->
     </template>
 
     <!---------------Scripts---------------->
